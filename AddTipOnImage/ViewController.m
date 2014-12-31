@@ -9,9 +9,13 @@
 #import "ViewController.h"
 #import "RGImageView.h"
 
+#define InputDefault   @"输入内容，尽情吐槽吧"
+
 @interface ViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) NSString *tipContent;
 @property (strong, nonatomic) RGImageView *rgImageView;
+@property (strong, nonatomic) UITextField *inputTextField;
+@property (strong, nonatomic) UIButton *tip;
 @end
 
 @implementation ViewController
@@ -37,13 +41,14 @@
 //    label.textAlignment = NSTextAlignmentCenter;
 //    [self.view addSubview:label];
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 230, 300, 40)];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.layer.borderColor = [UIColor blackColor].CGColor;
-    textField.placeholder = @"输入内容，尽情吐槽吧！";
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.returnKeyType = UIReturnKeySend;
-    [self.view addSubview:textField];
+    self.inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 230, 300, 40)];
+    self.inputTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.inputTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    self.inputTextField.placeholder = InputDefault;
+    self.inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.inputTextField.returnKeyType = UIReturnKeySend;
+    self.inputTextField.delegate = self;
+    [self.view addSubview:self.inputTextField];
 
 }
 
@@ -52,23 +57,41 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    self.tipContent = textField.text;
-    [self addTip:self.tipContent];
+    [self addTip:textField.text];
+    [self keyboardWillHide];
     return YES;
 }
 
--(void)addTip:(NSString *)content {
-    [self initTip:self.tipContent];
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [self keyboardWillHide];
+    self.inputTextField.text = InputDefault;
 }
 
--(void)initTip:(NSString *)title {
-    UIButton *tip = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 50, 20)];
-    tip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
-    tip.titleLabel.text = title;
-    [self.rgImageView addSubview:tip];
+-(void)addTip:(NSString *)content {
+    self.tip = [[UIButton alloc] initWithFrame:CGRectMake(70, 120, 40, 20)];
+    self.tip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
+    [self.tip setTitle:content forState:UIControlStateNormal];
+    self.tip.titleLabel.textColor = [UIColor whiteColor];
+    
+    UIPanGestureRecognizer *dragTip = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.tip addGestureRecognizer:dragTip];
+
+    [self.rgImageView addSubview:self.tip];
+
+}
+
+-(void)handlePan:(UIPanGestureRecognizer *) recognizer {
+    CGPoint translation = [recognizer translationInView:self.view];
+    self.tip.center = CGPointMake(self.tip.center.x + translation.x, self.tip.center.y + translation.y);
+    [recognizer setTranslation:CGPointZero inView:self.view];
 }
 
 -(BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+-(void)keyboardWillHide {
+    [self.inputTextField resignFirstResponder];
+}
+
 @end

@@ -14,6 +14,8 @@
 		A24CBEAD1A53950A0088630C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A24CBEAC1A53950A0088630C /* Images.xcassets */; };
 		A24CBEB01A53950A0088630C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A24CBEAE1A53950A0088630C /* LaunchScreen.xib */; };
 		A24CBEBC1A53950A0088630C /* AddTipOnImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A24CBEBB1A53950A0088630C /* AddTipOnImageTests.m */; };
+		A24CBECB1A5397160088630C /* RGImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A24CBECA1A5397160088630C /* RGImageView.m */; };
+		A24CBECD1A5397300088630C /* testPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A24CBECC1A5397300088630C /* testPic.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		A24CBEB51A53950A0088630C /* AddTipOnImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddTipOnImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24CBEBA1A53950A0088630C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A24CBEBB1A53950A0088630C /* AddTipOnImageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddTipOnImageTests.m; sourceTree = "<group>"; };
+		A24CBEC91A5397160088630C /* RGImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGImageView.h; sourceTree = "<group>"; };
+		A24CBECA1A5397160088630C /* RGImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RGImageView.m; sourceTree = "<group>"; };
+		A24CBECC1A5397300088630C /* testPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testPic.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,8 @@
 		A24CBE9E1A53950A0088630C /* AddTipOnImage */ = {
 			isa = PBXGroup;
 			children = (
+				A24CBEC51A5396D70088630C /* AddTipOnImageClass */,
+				A24CBEC61A5396D70088630C /* image */,
 				A24CBEA31A53950A0088630C /* AppDelegate.h */,
 				A24CBEA41A53950A0088630C /* AppDelegate.m */,
 				A24CBEA61A53950A0088630C /* ViewController.h */,
@@ -117,6 +124,23 @@
 				A24CBEBA1A53950A0088630C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A24CBEC51A5396D70088630C /* AddTipOnImageClass */ = {
+			isa = PBXGroup;
+			children = (
+				A24CBEC91A5397160088630C /* RGImageView.h */,
+				A24CBECA1A5397160088630C /* RGImageView.m */,
+			);
+			path = AddTipOnImageClass;
+			sourceTree = "<group>";
+		};
+		A24CBEC61A5396D70088630C /* image */ = {
+			isa = PBXGroup;
+			children = (
+				A24CBECC1A5397300088630C /* testPic.jpg */,
+			);
+			path = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +225,7 @@
 			files = (
 				A24CBEAB1A53950A0088630C /* Main.storyboard in Resources */,
 				A24CBEB01A53950A0088630C /* LaunchScreen.xib in Resources */,
+				A24CBECD1A5397300088630C /* testPic.jpg in Resources */,
 				A24CBEAD1A53950A0088630C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +247,7 @@
 				A24CBEA81A53950A0088630C /* ViewController.m in Sources */,
 				A24CBEA51A53950A0088630C /* AppDelegate.m in Sources */,
 				A24CBEA21A53950A0088630C /* main.m in Sources */,
+				A24CBECB1A5397160088630C /* RGImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +442,7 @@
 				A24CBEC11A53950A0088630C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A24CBEC21A53950A0088630C /* Build configuration list for PBXNativeTarget "AddTipOnImageTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +451,7 @@
 				A24CBEC41A53950A0088630C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

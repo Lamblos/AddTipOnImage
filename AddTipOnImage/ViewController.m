@@ -68,9 +68,11 @@
 }
 
 -(void)addTip:(NSString *)content {
-    self.tip = [[UIButton alloc] initWithFrame:CGRectMake(70, 120, 40, 20)];
+    CGRect frame = CGRectMake([self getRandomNumber:0 to:280], [self getRandomNumber:0 to:180], 40, 20);
+    self.tip = [[UIButton alloc] initWithFrame:frame];
     self.tip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5];
     [self.tip setTitle:content forState:UIControlStateNormal];
+    [self.tip.titleLabel setFont:[UIFont systemFontOfSize:11]];
     self.tip.titleLabel.textColor = [UIColor whiteColor];
     
     UIPanGestureRecognizer *dragTip = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -88,6 +90,10 @@
 
 -(BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+-(int)getRandomNumber:(int)from to:(int)to {
+    return (int)(from + (arc4random() % (to - from + 1)));
 }
 
 -(void)keyboardWillHide {

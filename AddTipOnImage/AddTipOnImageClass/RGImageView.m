@@ -31,6 +31,17 @@
 }
 
 -(void)imageViewTaped {
+    if ([self.tip isFirstResponder]) {
+        [self.tip resignFirstResponder];
+        self.tip.alpha = ([self.tip.text isEqualToString:@""]) ? 0:self.tip.alpha;
+    }else {
+        [self.tip becomeFirstResponder];
+        self.tip.alpha = 1;
+    }
+    
+    if ([self.subviews count] > 0) {
+        return;
+    }
     [self initTip];
 }
 
@@ -41,6 +52,15 @@
     self.tip.textColor = [UIColor whiteColor];
     self.tip.delegate = self;
     [self addSubview:self.tip];
+    
+    UIPanGestureRecognizer *dragTip = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.tip addGestureRecognizer:dragTip];
+}
+
+-(void)handlePan:(UIPanGestureRecognizer *) recognizer {
+    CGPoint translation = [recognizer translationInView:self];
+    self.tip.center = CGPointMake(self.tip.center.x + translation.x, self.tip.center.y + translation.y);
+    [recognizer setTranslation:CGPointZero inView:self];
 }
 
 @end
